@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getThongTinLichChieuPhimThunk } from '../../store/QuanLyRap/thunk'
-import { CustomCard } from '@tsamantanis/react-glassmorphism'
-import '@tsamantanis/react-glassmorphism/dist/index.css'
+// import { CustomCard } from '@tsamantanis/react-glassmorphism'
+// import '@tsamantanis/react-glassmorphism/dist/index.css'
 import moment from 'moment'
 import { StarOutlined, StarFilled, StarTwoTone } from '@ant-design/icons';
 import '../../assets/styles/circle.css'
@@ -29,8 +29,11 @@ export const Detail = () => {
       backgroundSize: '100%',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat'
-    }}>
-      <CustomCard
+      
+    }}
+    className='pb-8'
+    >
+      <div
         effectColor="#C780FF" // required
         color="#14AEFF" // default color is white
         blur={50} // default blur value is 10px
@@ -143,7 +146,7 @@ export const Detail = () => {
 
           }
         />
-      </CustomCard>
+      </div>
 
 
 
