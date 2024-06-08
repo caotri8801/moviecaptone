@@ -20,7 +20,7 @@ export const HomeMenu = ({ cumRapList }) => {
             // tab cụm rạp
             children: <Tabs
               tabPosition={tabPosition}
-              items={item.lstCumRap.map((cumrap, i) => {
+              items={item.lstCumRap?.slice(0,4).map((cumrap, i) => {
                 const id = String(i + 1);
                 return {
                   label: <div className='flex'>
@@ -33,7 +33,7 @@ export const HomeMenu = ({ cumRapList }) => {
                   key: id,
                   //Film chiếu tại 1 cụm rạp
                   children: <div>
-                    {cumrap.danhSachPhim?.map((phim, index) => {
+                    {cumrap.danhSachPhim?.slice(0,5).map((phim, index) => {
                       return (
                         <Fragment >
                           <div className='flex mb-2' key={index}>
@@ -48,7 +48,7 @@ export const HomeMenu = ({ cumRapList }) => {
                               <p >{cumrap.diaChi}</p>
                               <div className='grid grid-cols-5 gap-2 text-green-600'>
                                 {
-                                  phim.lstLichChieuTheoPhim?.map((lichChieu, index) => {
+                                  phim.lstLichChieuTheoPhim?.slice(0,10).map((lichChieu, index) => {
                                     return (
                                       <NavLink key={index}>{moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}</NavLink>
                                     )

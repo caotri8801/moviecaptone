@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getThongTinLichChieuPhimThunk } from '../../store/QuanLyRap/thunk'
 import { CustomCard } from '@tsamantanis/react-glassmorphism'
@@ -37,7 +37,8 @@ export const Detail = () => {
         borderRadius={0} // default border radius value is 10px
 
       >
-        <div className="py-28">
+        {/*Chi tiết phim */}
+        <div className="pt-28 pb-8">
           <div className='grid grid-cols-12'>
             <div className='col-start-3 col-span-2'>
               <img src={phim.hinhAnh} />
@@ -47,7 +48,7 @@ export const Detail = () => {
               <h1 className='my-3 font-bold text-xl'>{phim.tenPhim}</h1>
               <p>{phim.moTa}</p>
             </div >
-            <div className='col-start-9 col-span-2 h-64'>
+            <div className='col-start-9 col-span-2 '>
               <div className='flex flex-col text-center text-[green]'>
                 <h2 className='font-bold text-xl'>Đánh giá</h2>
                 <div className='my-2'>
@@ -70,8 +71,10 @@ export const Detail = () => {
           </div>
 
         </div>
+        {/* Menu lịch chiếu */}
         <Tabs
-          className='container w-[60%]'
+          
+          className='container w-[60%] bg-white'
           defaultActiveKey="1"
           centered
           items={
@@ -99,8 +102,19 @@ export const Detail = () => {
                                   height: 50
                                 }} />
                                 <div className='ml-2'>
-                                  <h2 className='text-[15px] font-bold mb-2'>{item.tenCumRap}</h2>
-                                  <h4>{item.diaChi}</h4>
+                                  <h2 className='text-[15px] font-bold'>{item.tenCumRap}</h2>
+                                  <h4 className='my-2'>{item.diaChi}</h4>
+                                  <div className='grid grid-cols-5 gap-3 text-[green]'>
+                                    {
+                                      item.lichChieuPhim.map((lich, index) => {
+                                        return(
+                                          <NavLink>
+                                            {moment(lich.ngayChieuGioChieu).format('hh:mm A')}
+                                          </NavLink>
+                                        )
+                                      })
+                                    }
+                                  </div>
                                 </div>
                               </div>)
                             })
