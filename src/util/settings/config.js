@@ -1,0 +1,6 @@
+export const QUAN_LY_NGUOI_DUNG_API = 'https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung'
+export const QUAN_LY_PHIM_API = 'https://movienew.cybersoft.edu.vn/api/QuanLyPhim'
+export const QUAN_LY_RAP_API = 'https://movienew.cybersoft.edu.vn/api/QuanLyRap'
+export const LOCALE_USER_LOGIN_KEY = 'USER'
+export const GROUPID = 'GP02'
+export const TOKEN_CYBERSOFT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA2MyIsIkhldEhhblN0cmluZyI6IjA5LzA5LzIwMjQiLCJIZXRIYW5UaW1lIjoiMTcyNTg0MDAwMDAwMCIsIm5iZiI6MTY5Njg3MDgwMCwiZXhwIjoxNzI1OTg3NjAwfQ.eka9nnrY4RvjgyAAdJH7uruVGj0DfXCfIM8V8HRpIMI'
