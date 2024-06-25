@@ -8,6 +8,8 @@ import moment from 'moment'
 import { StarOutlined, StarFilled, StarTwoTone } from '@ant-design/icons';
 import '../../assets/styles/circle.css'
 import { Rate, Tabs } from 'antd'
+import { PATH } from '../../constants/config'
+import { quanLyDatVeActions, quanLyDatVeReducer } from '../../store/QuanLyDatVe/slice'
 
 export const Detail = () => {
 
@@ -21,11 +23,13 @@ export const Detail = () => {
   useEffect(() => {
     //trong 1 hook ko được gọi 1 hook khác
     dispatch(getThongTinLichChieuPhimThunk(id))
+    dispatch(quanLyDatVeActions.setActiveTab('1'))
   }, [])
 
   return (
     <div style={{
-      backgroundImage: `url(${phim.hinhAnh})`,
+      // backgroundImage: `url(${phim.hinhAnh})`,
+      backgroundColor:'#00000069',
       backgroundSize: '100%',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat'
@@ -111,7 +115,7 @@ export const Detail = () => {
                                     {
                                       item.lichChieuPhim.map((lich, index) => {
                                         return(
-                                          <NavLink>
+                                          <NavLink to={`/checkout/${lich.maLichChieu}`}>
                                             {moment(lich.ngayChieuGioChieu).format('hh:mm A')}
                                           </NavLink>
                                         )

@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aspnet/signalr": "^1.0.27",
+    "@microsoft/signalr": "^8.0.0",
     "@reduxjs/toolkit": "^2.2.1",
     "@tanstack/react-query": "^5.40.1",
     "antd": "^5.17.4",

@@ -1,0 +1,31 @@
+.ghe {
+    width: 30px;
+    height: 30px;
+    border:none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 6px;
+    background-color: rgb(123, 122, 122);
+    color: #fff;
+}
+
+.gheVip {
+    background-color: rgb(204, 211, 17);
+}
+
+.gheDaDat {
+    background-color: rgb(240, 97, 7);
+}
+
+.gheDangDat {
+    background-color: rgb(10, 196, 38);
+}
+
+/* ghế mình đặt */
+.gheDaDuocDat { 
+    background-color: rgb(225, 20, 198);
+}
+
+.gheNguoiKhacDangDat {
+    background-color: rgb(42, 5, 172);
+}

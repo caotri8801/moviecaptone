@@ -14,7 +14,7 @@ export const apiIntance =
                 ...config,
                 headers: {
                     TokenCybersoft: TOKEN_CYBERSOFT,
-                    Authorization: 'Bearer ' + getUserLogin()?.accessToken || ''
+                    Authorization: 'Bearer ' + getUserLogin()?.content.accessToken || ''
               
                 },
             } 
