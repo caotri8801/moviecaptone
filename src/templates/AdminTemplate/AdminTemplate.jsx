@@ -7,10 +7,11 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Navigate, Outlet } from 'react-router-dom';
 import { PATH } from '../../constants/config';
 import { useDispatch } from 'react-redux';
 import { getMovieListThunk } from '../../store/QuanLyPhimReducer/thunk';
+import { LOCALE_USER_LOGIN_KEY } from '../../util/settings/config';
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -28,13 +29,22 @@ const items = [
     getItem('Add new', '22',<NavLink end to={PATH.addnew}></NavLink>),
   ]),
   getItem('Showtime', '3', <NavLink end to={PATH.showtime}><DesktopOutlined /></NavLink>),
+  
 
   
 ];
 export const AdminTemplate = () => {
+  //check loại người dùng
+  if(JSON.parse(localStorage.getItem(LOCALE_USER_LOGIN_KEY)).content.maLoaiNguoiDung != 'QuanTri'){
+    return  <Navigate to="/login" />;
+  }
+
   const [collapsed, setCollapsed] = useState(false);
   const dispatch = useDispatch()
   
+
+  
+
   useEffect(()=>{
     dispatch(getMovieListThunk())
   },[])

@@ -5,7 +5,8 @@ const initialState = {
     movieListDefault: [],
     dangChieu: true,
     sapChieu: true,
-    
+    thongTinPhimDefault:{},
+    thongTinPhim: {},
 }
 
 
@@ -26,6 +27,18 @@ export const { reducer: quanLyPhimReducer, actions: quanLyPhimActions } = create
             state.sapChieu = true
             state.dangChieu = !state.sapChieu 
             state.movieList = state.movieListDefault.filter((item)=>item.sapChieu === state.sapChieu)
+        },
+        setThongTinPhimF: (state, { payload }) => {
+           
+            state.thongTinPhim = payload
+            state.thongTinPhimDefault = payload
+            
+        },
+        setThongTinPhim: (state, { payload }) => {
+           
+            state.thongTinPhim = payload
+
+            
         },
     },
 })

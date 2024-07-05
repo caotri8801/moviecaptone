@@ -19,6 +19,7 @@ import { Dashboard } from './pages/Admin/Dashboard/Dashboard'
 import { Films } from './pages/Admin/Films/Films'
 import { AddNew } from './pages/Admin/Films/AddNew/AddNew'
 import { Showtime } from './pages/Admin/Showtime/Showtime'
+import { Edit } from './pages/Admin/Films/Edit/Edit'
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
           <Route path={PATH.users} element={<Dashboard />} />
           <Route path={PATH.films} element={<Films/>} />
           <Route path={PATH.addnew} element={<AddNew/>} />
+          <Route path={PATH.edit} element={<Edit/>} />
           <Route path={PATH.showtime} element={<Showtime/>} />
         </Route>
         </Route>

@@ -12,4 +12,10 @@ export const quanLyPhimServices = {
     // getMovieById: ({query = ''} = {}) => api.get(`/LayThongTinPhim${query}`)
     // {query = ''} = {} destructering query from object {}
     getMovieList: () => api.get(`/LayDanhSachPhim?maNhom=${GROUPID}`),
+
+    themPhimUploadHinh: (payload) => api.post(`/ThemPhimUploadHinh`,payload),
+
+    layThongTinPhim: (query) => api.get(`/LayThongTinPhim${query}`),
+
+    capNhatPhimUpload: (payload) => api.post(`/CapNhatPhimUpload`,payload),
 }
