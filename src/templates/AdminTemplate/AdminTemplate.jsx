@@ -100,6 +100,7 @@ export const AdminTemplate = () => {
           Ant Design ©{new Date().getFullYear()} Created by Ant UED
         </Footer>
       </Layout>
+      {/*  */}
     </Layout>
   );
 };
