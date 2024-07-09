@@ -56,6 +56,9 @@ export const Header = () => {
           <li className="flex">
             <NavLink to={PATH.profile} rel="noopener noreferrer" href="#" className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-violet-600 border-violet-600 text-white" >Profile</NavLink>
           </li>
+          <li className="flex">
+            <NavLink to={PATH.admin} rel="noopener noreferrer" href="#" className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-violet-600 border-violet-600 text-white" >Admin</NavLink>
+          </li>
         </ul>
         {
           renderThongTinLogin()
