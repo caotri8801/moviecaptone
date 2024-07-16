@@ -35,7 +35,7 @@ const items = [
 ];
 export const AdminTemplate = () => {
   //check loại người dùng
-  if(JSON.parse(localStorage.getItem(LOCALE_USER_LOGIN_KEY)).content.maLoaiNguoiDung != 'QuanTri'){
+  if(JSON.parse(localStorage.getItem(LOCALE_USER_LOGIN_KEY))?.content.maLoaiNguoiDung != 'QuanTri'){
     return  <Navigate to="/login" />;
   }
 

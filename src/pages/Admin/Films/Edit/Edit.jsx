@@ -24,8 +24,9 @@ export const Edit = () => {
 
   const { id } = useParams()
   const dispatch = useDispatch()
-  const { thongTinPhim,thongTinPhimDefault } = useSelector((state) => state.quanLyPhimReducer)
-  console.log("thongTinPhim: ", thongTinPhim);
+  const { thongTinPhim,thongTinPhimDefault,hinhAnhTmp } = useSelector((state) => state.quanLyPhimReducer)
+  console.log("hinhAnhTmp: ", hinhAnhTmp);
+  // console.log("thongTinPhim: ", thongTinPhim);
   let thongTinPhimTMP = {...thongTinPhim}
 
   useEffect(() => {
@@ -78,19 +79,20 @@ export const Edit = () => {
 
   let formValues = getValues()
   
-  console.log("formValues: ", formValues);
+  // console.log("formValues: ", formValues);
 
 
   const getChangeHandlerWithEvent = name => event => 
   {
     dispatch(quanLyPhimActions.setThongTinPhim({...thongTinPhimTMP,[name]:event.target.value}))
-    setValue(name, event.target.value);
+    // setValue(name, event.target.value);
   }
     
   
 
   const handleChangeDatePicker = name => event =>
   {
+    console.log("date", (dayjs(event).format('YYYY-MM-DD')+'T00:00:00').toString())
     dispatch(quanLyPhimActions.setThongTinPhim({...thongTinPhimTMP,[name]:(dayjs(event).format('YYYY-MM-DD')+'T00:00:00').toString()}))
     // setValue(name, dayjs(event).format('DD/MM/YYYY'));
   }
@@ -99,7 +101,7 @@ export const Edit = () => {
 
     return (value) => {
       dispatch(quanLyPhimActions.setThongTinPhim({...thongTinPhimTMP,[name]:value}))
-      setValue(name, value)
+      // setValue(name, value)
     }
   }
 
@@ -115,7 +117,8 @@ export const Edit = () => {
         dispatch(quanLyPhimActions.setThongTinPhim({...thongTinPhimTMP,'hinhAnh':e.target.result}))
       }
       //  Đem dữ liệu file lưu vào form
-      setValue('hinhAnh', file);
+      // setValue('hinhAnhTmp', file);
+      dispatch(quanLyPhimActions.setHinhAnhTmp(file))
     }
   }
 
@@ -142,7 +145,7 @@ export const Edit = () => {
           values.maNhom = GROUPID;
           let formData = new FormData();
           for (let key in values) {
-            if (key !== 'hinhAnh') {
+            if (key !== 'hinhAnh' && key !== 'hinhAnhTmp') {
               formData.append(key, values[key]);
             } 
             if (key == 'hinhAnh'){
@@ -150,15 +153,16 @@ export const Edit = () => {
               if (values[key] == thongTinPhimDefault.hinhAnh)
                 formData.append(key, null);
               else {
-                console.log("hinh A: ", values.hinhAnh);
+                // console.log("hinh A: ", values.hinhAnh);
 
-                formData.append('File', values.hinhAnh, values.hinhAnh.name);
+                console.log("hinhAnhTmp.name): ", hinhAnhTmp.name);
+                formData.append('File', hinhAnhTmp, hinhAnhTmp.name);
 
               }
             }
             if (key == 'ngayKhoiChieu') {
-              console.log("keyDate: ", dayjs(values[key]).format('DD/MM/YYYY'));
-              formData.append(key, dayjs(values[key]).format('DD/MM/YYYY'));
+              console.log("keyDate: ", dayjs(values[key]).toDate());
+              formData.append(key, dayjs(values[key]).toDate());
               // setValue(name, dayjs(event).format('DD/MM/YYYY'));
               // setValue(name, moment(event._d).format('DD/MM/YYYY'));
             } 

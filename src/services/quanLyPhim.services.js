@@ -11,11 +11,16 @@ export const quanLyPhimServices = {
 
     // getMovieById: ({query = ''} = {}) => api.get(`/LayThongTinPhim${query}`)
     // {query = ''} = {} destructering query from object {}
-    getMovieList: () => api.get(`/LayDanhSachPhim?maNhom=${GROUPID}`),
+    getMovieList: (query) => api.get(`/LayDanhSachPhim?maNhom=${GROUPID}${query}`),
+
+    // searchPhim: (query) => api.get(`/LayDanhSachPhim?maNhom=${GROUPID}&${query}`),
 
     themPhimUploadHinh: (payload) => api.post(`/ThemPhimUploadHinh`,payload),
 
     layThongTinPhim: (query) => api.get(`/LayThongTinPhim${query}`),
 
     capNhatPhimUpload: (payload) => api.post(`/CapNhatPhimUpload`,payload),
+    
+    xoaPhim: (query) => api.delete(`/XoaPhim${query}`),
+
 }

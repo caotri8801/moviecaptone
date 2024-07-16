@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { LOCALE_USER_LOGIN_KEY } from "../../util/settings/config"
 import { layThongTinNguoiDungThunk } from "./thunk"
+import { getUserLogin } from "../../util/getUserLogin"
 
 let user = {}
 if(localStorage.getItem(LOCALE_USER_LOGIN_KEY)){
@@ -10,7 +11,8 @@ if(localStorage.getItem(LOCALE_USER_LOGIN_KEY)){
 const initialState = {
     userLogin: user,
     thongTinNguoiDung: {},
-    isFetchingLayThongTinNguoiDung: false
+    isFetchingLayThongTinNguoiDung: false,
+    userLogin: getUserLogin(),
     
 }
 
@@ -27,7 +29,11 @@ export const { reducer: quanLyNguoiDungReducer, actions: quanLyNguoiDungActions 
             state.thongTinNguoiDung = payload
            
         },
-
+        logOut: (state) => {
+            state.userLogin = null,
+            localStorage.removeItem(LOCALE_USER_LOGIN_KEY)
+           
+        },
        
     },
     extraReducers:(builder) => {

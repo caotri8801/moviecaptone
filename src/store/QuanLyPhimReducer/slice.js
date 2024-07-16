@@ -7,8 +7,8 @@ const initialState = {
     sapChieu: true,
     thongTinPhimDefault:{},
     thongTinPhim: {},
+    hinhAnhTmp: null
 }
-
 
 export const { reducer: quanLyPhimReducer, actions: quanLyPhimActions } = createSlice({
     initialState,
@@ -37,6 +37,12 @@ export const { reducer: quanLyPhimReducer, actions: quanLyPhimActions } = create
         setThongTinPhim: (state, { payload }) => {
            
             state.thongTinPhim = payload
+
+            
+        },
+        setHinhAnhTmp: (state, { payload }) => {
+           
+            state.hinhAnhTmp = payload
 
             
         },

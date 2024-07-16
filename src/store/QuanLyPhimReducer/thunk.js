@@ -10,9 +10,18 @@ export const getMovieListThunk = createAsyncThunk('quanLyPhimReducer/getmovielis
     async (payload, { rejectWithValue, dispatch }) => {
         //lấy ra dispath hàm async này sẽ ra dữ liệu kiểu đầu vào dạng dispatch =? sau đó (dữ liệu kiểu đầu vào dạng dispatch) này được truyền vào dispatch ở dưới component
         try {
+            let query = ''
+            if(payload){
+                query ='&'+ qs.stringify({
+                    tenPhim: payload,
+                },
+                {
+                    addQueryPrefix: false
+                }
+            )
+        }
 
-            // await sleep()
-            const result = await quanLyPhimServices.getMovieList()
+            const result = await quanLyPhimServices.getMovieList(query)
 
             dispatch(quanLyPhimActions.addMovieList(result.data.content))
 
@@ -20,6 +29,7 @@ export const getMovieListThunk = createAsyncThunk('quanLyPhimReducer/getmovielis
             return rejectWithValue(err)
         }
     })
+
 
 export const themPhimUploadHinhThunk = createAsyncThunk('quanLyPhimReducer/themphimuploadhinh', //name
     async (payload, { rejectWithValue, dispatch }) => {
@@ -61,6 +71,26 @@ export const capNhatPhimUploadThunk = createAsyncThunk('quanLyPhimReducer/capnha
             // if (result.data.statusCode == '200') {
             //     dispatch(quanLyNguoiDungActions.addUserLogin(result.data))
             // }
+        } catch (err) {
+            return rejectWithValue(err)
+        }
+    })
+
+export const xoaPhimThunk = createAsyncThunk('quanLyPhimReducer/xoaphim',
+    async (id, { rejectWithValue, dispatch }) => {
+       
+        try {
+            const query = qs.stringify({
+                MaPhim: id,
+            },
+                {
+                    addQueryPrefix: true
+                }
+            )
+            
+            const result = await quanLyPhimServices.xoaPhim(query)
+            dispatch(getMovieListThunk())
+
         } catch (err) {
             return rejectWithValue(err)
         }

@@ -63,7 +63,7 @@ export const AddNew = () => {
   const handleChangeFile = (e) => {
     //Lấy file ra từ e
     let file = e.target.files[0];
-    console.log("file: ", file);
+    // console.log("file: ", file);
     if (file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/gif' || file.type === 'image/png') {
 
       //Tạo đối tượng để đọc file
@@ -104,7 +104,7 @@ export const AddNew = () => {
           if (key !== 'hinhAnh') {
             formData.append(key, values[key]);
           } else {
-            console.log("hinhAnh: ", values.hinhAnh);
+     
             formData.append('File', values.hinhAnh, values.hinhAnh.name);
           }
         }

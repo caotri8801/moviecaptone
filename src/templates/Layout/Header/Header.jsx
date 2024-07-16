@@ -1,37 +1,95 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Button, Popover } from 'antd';
 import { NavLink, useNavigate } from 'react-router-dom'
 import { PATH } from '../../../constants/config'
 import { getUserLogin } from '../../../util/getUserLogin'
 import { UserOutlined } from '@ant-design/icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { quanLyNguoiDungActions } from '../../../store/QuanLyNguoiDungReducer/slice';
 
 export const Header = () => {
   const navigate = useNavigate()
+  const {userLogin} = useSelector((state) => state.quanLyNguoiDungReducer)
+  const dispatch = useDispatch()
   const renderThongTinLogin = () => {
+
+    const [open, setOpen] = useState(false);
+    const hide = () => {
+      setOpen(false);
+    };
+    const handleOpenChange = (newOpen) => {
+      setOpen(newOpen);
+    };
 
     return (
       <div>
         {
-          !getUserLogin() ? <div className="items-center flex-shrink-0 hidden lg:flex">
+          !userLogin ? <div className="items-center flex-shrink-0 hidden lg:flex">
             <button className="self-center px-8 py-3 rounded" onClick={() => {
               navigate(PATH.login)
             }}>Sign in</button>
             <button className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-600 dark:text-gray-50" onClick={() => {
               navigate(PATH.register)
             }}>Sign up</button>
-          </div> : <div className='flex'>
-            <div className='flex items-center justify-center mr-3' style={{
-              width: 40,
-              height: 40,
-              borderRadius: 50,
-              backgroundColor: 'green'
-            }}><UserOutlined /></div>
-            <div style={{
-              height: 40,
-            }} className='flex items-center'>
-              Wellcome! {getUserLogin().content.taiKhoan}
-            </div>
-          </div>
-          
+          </div> :
+            <Popover
+              content={
+                <div>
+                        <Button
+                            
+                            type="primary"
+                            info
+                            // onClick={() => {
+                            //     navigate(PATH.userInfo)
+                            //     setOpen(false)
+                            // }}
+                            className='mr-2'
+                        >
+                            Thông tin tài khoản
+                        </Button>
+                        {/* <Divider className="py-10" /> */}
+                        <Button
+                            type="primary"
+                            danger
+                            onClick={() => dispatch(quanLyNguoiDungActions.logOut())}
+                        >
+                            Đăng xuất
+                        </Button>
+                </div>
+              }
+              // title="Title"
+              trigger="click"
+              open={open}
+              onOpenChange={handleOpenChange}
+            >
+              <div className='flex '>
+                <Button type="primary" className='flex items-center justify-center mr-3' style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 50,
+                  backgroundColor: 'green'
+                }}><UserOutlined /></Button>
+                <div style={{
+                  height: 40,
+                }} className='flex items-center'>
+                  Wellcome! {getUserLogin().content.taiKhoan}
+                </div>
+              </div>
+            </Popover>
+          // <div className='flex'>
+          //   <div className='flex items-center justify-center mr-3' style={{
+          //     width: 40,
+          //     height: 40,
+          //     borderRadius: 50,
+          //     backgroundColor: 'green'
+          //   }}><UserOutlined /></div>
+          //   <div style={{
+          //     height: 40,
+          //   }} className='flex items-center'>
+          //     Wellcome! {getUserLogin().content.taiKhoan}
+          //   </div>
+          // </div>
+
         }
       </div>
     )

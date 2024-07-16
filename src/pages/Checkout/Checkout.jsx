@@ -207,7 +207,7 @@ const KetQuaDatVe = () => {
   const dispatch = useDispatch()
   const {chiTietPhongVe} = useSelector((state) => state.quanLyDatVeReducer)
   useEffect(() => {
-    dispatch( layThongTinNguoiDungThunk(userInfo.taiKhoan))
+    dispatch( layThongTinNguoiDungThunk(userInfo?.taiKhoan))
     return () => {
       dispatch(quanLyDatVeActions.setActiveTab('1'))
     }

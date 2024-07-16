@@ -37,7 +37,7 @@ export const datVeThunk = createAsyncThunk('quanLyDatVeReducer/datve',
             connection.invoke('datGheThanhCong',taiKhoan,payload.maLichChieu.toString());
         
             dispatch(quanLyDatVeActions.setIsLoading(false))
-            dispatch(quanLyDatVeActions.setActiveTab('2'))
+            // dispatch(quanLyDatVeActions.setActiveTab('2'))
         } catch (err) {
             return rejectWithValue(err)
         }
